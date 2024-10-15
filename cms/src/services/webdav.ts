@@ -51,7 +51,8 @@ export class Webdav
         if(!response.ok) return response;
         const data = await response.text();
         const xml = this.parser.parse(data);
-        const items = xml["D:multistatus"]["D:response"]
+        const responseData = xml["D:multistatus"]["D:response"]?.map ? xml["D:multistatus"]["D:response"] : [];
+        const items = responseData
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             ?.map((item: any) => ({
                 basename: item["D:propstat"]["D:prop"]["D:displayname"],

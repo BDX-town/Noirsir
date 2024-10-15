@@ -1,7 +1,7 @@
-#!/bin/bash
+#!/bin/sh
 set -euo pipefail
 
-: "${NGINX_FOLDER:=/var/www/html}"
+: "${NGINX_FOLDER:=/usr/share/nginx/html}"
 # path must be the same that root in nginx.conf + a blogs folder
 : "${BLOGS_FOLDER:=blogs}"
 : "${RESSOURCES_FOLDER:=ressources}"
