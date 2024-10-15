@@ -16,7 +16,7 @@ ENV WWW_GROUP=www-data
 RUN apk add curl gnupg
 
 # install deps
-RUN apk add gettext gum nginx nginx-mod-http-lua nginx-mod-http-dav-ext openssl \
+RUN apk add gettext gum nginx nginx-mod-http-lua nginx-mod-http-dav-ext openssl bash \
     && corepack enable
 
 
@@ -25,7 +25,7 @@ RUN mkdir -p $NGINX_FOLDER
 
 # install noircir 
 COPY . $NOIRCIR_FOLDER 
-RUN mkdir -p /tools && cp $NOIRCIR_FOLDER/tools/* /tools
+RUN mkdir -p /tools && mv $NOIRCIR_FOLDER/tools /tools
 RUN cd $NOIRCIR_FOLDER && npx yarn && npx yarn run build && cd /
 RUN cp -r $NOIRCIR_FOLDER/cms/dist/* $NGINX_FOLDER
 
